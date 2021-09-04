@@ -1,3 +1,7 @@
+#dialogue {
+    margin-top: -5px;
+}
+
 #dialogue #continue-btn {
     float: right;
 }

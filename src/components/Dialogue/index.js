@@ -1,6 +1,8 @@
 /** @module components/Dialogue */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { observer } from 'mobx-react';
+import State from '../../state';
 
 import './style.css';
 
@@ -8,26 +10,22 @@ import './style.css';
 * @description returns stylized dialogue box
 * @props
 */
-const Dialogue = ({ title, content, centered }) => (
+const Dialogue = ({ centered }) => State.dialogue.show ? (
     <div
         id="dialogue"
-        className={`nes-container ${title ? 'with-title' : ''} ${centered ? 'is-centered' : ''}`}>
-        {title && <p className="title">{title}</p>}
-        <p>{content}</p>
+        className={`nes-container ${State.dialogue.title ? 'with-title' : ''} ${centered ? 'is-centered' : ''}`}>
+        {State.dialogue.title && <p className="title">{State.dialogue.title}</p>}
+        <p>{State.dialogue.content}</p>
         <button className="nes-btn" id="continue-btn">[Enter]</button>
     </div>
-);
+) : '';
 
 Dialogue.propTypes = {
-    title: PropTypes.string,
-    content: PropTypes.string,
     centered: PropTypes.bool,
 };
 
 Dialogue.defaultProps = {
-    title: null,
-    content: '...',
     centered: false,
 };
 
-export default Dialogue;
+export default observer(Dialogue);

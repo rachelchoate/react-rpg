@@ -15,7 +15,7 @@ const Screen = ({ resolution }) => (
         tabIndex="1"
         id="screen"
         style={{
-            height: `${resolution.height + 5}px`,
+            height: `${resolution.height + 10}px`,
             width: `${resolution.width + 10}px`,
         }}
         onKeyDown={State.actions.handleKeyPress}

@@ -14,7 +14,6 @@ class Actions {
 
     handleKeyPress = (e) => {
         e.preventDefault();
-        console.log(e);
         switch(e.code) {
             case 'KeyW':
             case 'ArrowUp':
@@ -31,6 +30,8 @@ class Actions {
             case 'KeyD':
             case 'ArrowRight':
                 this.rootStore.player.move('right');
+                break;
+            case 'Enter':
                 break;
             default:
                 break;

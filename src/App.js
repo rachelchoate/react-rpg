@@ -10,7 +10,7 @@ const App = () => (
             <Screen
                 resolution={{ height: State.map.height, width: State.map.width }}
             />
-            <Dialogue title="Are you ready..." content="...to make a game?" />
+            <Dialogue />
         </div>
     </div>
 );
