@@ -1,0 +1,6 @@
+#player {
+    height: 20px;
+    width: 20px;
+    background: tomato;
+    position: absolute;
+}

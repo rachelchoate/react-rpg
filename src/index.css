@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "PressStart2P";
+    src: local("PressStart2P"),
+     url("./assets/fonts/PressStart2P/PressStart2P-Regular.ttf") format("truetype");
+    font-weight: normal;
+}
+
+body {
+  margin: 0;
+}
+
+#app { font-family: "PressStart2P" }
+
+#game-container {
+    max-width: 1010px;
+    margin: auto;
+    margin-top: 50px;
+}
