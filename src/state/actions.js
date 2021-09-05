@@ -1,5 +1,6 @@
 /** @module state/actions */
 import { makeObservable, action } from 'mobx';
+import DefaultMapScript from '../assets/data/scripts/default';
 
 /**
 * @description handle user actions
@@ -35,6 +36,14 @@ class Actions {
                 break;
             default:
                 break;
+        }
+    }
+
+    loadMap = (mapScript) => {
+        if (!mapScript) {
+            this.rootStore.map.initScript(DefaultMapScript);
+        } else {
+            this.rootStore.map.initScript(mapScript);
         }
     }
 }

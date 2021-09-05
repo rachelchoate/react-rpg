@@ -48,14 +48,17 @@ class Player {
                 break;
         }
         if (this.rootStore.map.isInBounds(newPos)) {
-            let conflicts = this.rootStore.map.conflictsWith({
+            const playerShape = {
                 top: newPos[0],
                 left: newPos[1],
                 height: this.height,
                 width: this.width,
-            });
+                pos: newPos,
+            };
+            let conflicts = this.rootStore.map.conflictsWith(playerShape);
             conflicts = conflicts.filter((tile) => !tile.walkable);
             if (!conflicts.length) this.setPos(newPos);
+            this.rootStore.map.script.execute(playerShape);
         }
     }
 }

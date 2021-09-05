@@ -1,7 +1,6 @@
 /** @module state/map */
 import { makeObservable, observable, action } from 'mobx';
 import Tile from './tile';
-import DefaultMap from '../assets/data/maps/default.json';
 
 /**
 * @description mobx store for map state
@@ -21,6 +20,8 @@ class MapStore {
 
     tiles = [];
 
+    script = null;
+
     constructor(rootStore) {
         this.rootStore = rootStore;
         makeObservable(this, {
@@ -31,6 +32,7 @@ class MapStore {
             tileWidth: observable,
             tiles: observable,
             background: observable,
+            script: observable,
             init: action,
             setId: action,
             setBackground: action,
@@ -40,13 +42,18 @@ class MapStore {
             setTileWidth: action,
             setTiles: action,
         });
-        this.init(DefaultMap);
+    }
+
+    initScript = (Script) => {
+        this.script = new Script(this.rootStore);
+        console.log('INIT SCRIPT', this.script.id);
     }
 
     init = (mapDef) => {
         if (mapDef.id) this.id = mapDef.id;
         if (mapDef.background) this.background = mapDef.background;
         if (mapDef.tiles) this.tiles = mapDef.tiles.map((t) => new Tile(this.rootStore, t));
+        if (mapDef.playerStartingLocation) this.rootStore.player.setPos(mapDef.playerStartingLocation);
     }
 
     setId = (id) => {

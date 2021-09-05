@@ -1,6 +1,7 @@
 /** @module components/Screen */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { observer } from 'mobx-react';
 import Player from './Player';
 import State from '../../state';
 
@@ -51,4 +52,4 @@ Screen.defaultProps = {
     },
 };
 
-export default Screen;
+export default observer(Screen);

@@ -1,6 +1,7 @@
 {
     "id": "default",
     "background": "green",
+    "playerStartingLocation": [180, 320],
     "tiles": [
         {
             "id": "upperRiver",
