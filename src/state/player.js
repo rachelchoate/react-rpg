@@ -9,11 +9,17 @@ class Player {
 
     y = 0;
 
+    height = 20;
+
+    width = 20;
+
     constructor(rootStore) {
         this.rootStore = rootStore;
         makeObservable(this, {
             x: observable,
             y: observable,
+            height: observable,
+            width: observable,
             setPos: action,
         });
     }
@@ -41,11 +47,15 @@ class Player {
             default:
                 break;
         }
-        const xBoundary = this.rootStore.map.height - this.rootStore.map.tileHeight;
-        const yBoundary = this.rootStore.map.width - this.rootStore.map.tileWidth;
-        if (newPos[0] <= xBoundary && newPos[0] >= 0
-            && newPos[1] <= yBoundary && newPos[1] >= 0) {
-            this.setPos(newPos);
+        if (this.rootStore.map.isInBounds(newPos)) {
+            let conflicts = this.rootStore.map.conflictsWith({
+                top: newPos[0],
+                left: newPos[1],
+                height: this.height,
+                width: this.width,
+            });
+            conflicts = conflicts.filter((tile) => !tile.walkable);
+            if (!conflicts.length) this.setPos(newPos);
         }
     }
 }

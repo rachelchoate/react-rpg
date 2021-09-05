@@ -17,9 +17,22 @@ const Screen = ({ resolution }) => (
         style={{
             height: `${resolution.height + 10}px`,
             width: `${resolution.width + 10}px`,
+            background: State.map.background,
         }}
         onKeyDown={State.actions.handleKeyPress}
     >
+        {State.map.tiles.map((tile) => (
+            <div
+                class="tile"
+                style={{
+                    background: tile.background,
+                    top: `${tile.top}px`,
+                    left: `${tile.left}px`,
+                    height: `${tile.height}px`,
+                    width: `${tile.width}px`,
+                }}
+            />
+        ))}
         <Player />
     </div>
 );

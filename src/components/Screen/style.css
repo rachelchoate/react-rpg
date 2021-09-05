@@ -5,6 +5,10 @@
     border: 5px solid black;
 }
 
+.tile {
+    position: absolute;
+}
+
 /**
 #screen:focus {
     box-shadow: 0 5px 5px tomato;
